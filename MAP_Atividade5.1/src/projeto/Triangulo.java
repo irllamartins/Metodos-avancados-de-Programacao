@@ -38,7 +38,10 @@ public class Triangulo implements Propriedade{
 
 	@Override
 	public double area() throws TrianguloException {
-		if(lado1==lado2 && lado1==lado3) {
+		if(lado1==0|| lado2==0||lado3==0) {
+			throw new TrianguloException();
+		}
+		else if(lado1==lado2 && lado1==lado3) {
 			return ((lado1*lado1)* Math.sqrt(3))/4;
 		}
 		else if(lado1==lado2 || lado1==lado3 ||lado2==lado3) {
@@ -66,7 +69,9 @@ public class Triangulo implements Propriedade{
 
 	@Override
 	public double perimetro() throws TrianguloException {
-		
+		if(lado1==0|| lado2==0||lado3==0) {
+			throw new TrianguloException();
+		}
 		return lado1+lado2+lado3;
 	}
 
