@@ -10,13 +10,9 @@ public class Registro {
 		this.ano = ano;
 	}
 
-	
-
 	public DisciplinaProfessor getDisciplinaProfessor() {
 		return disciplinaProfessor;
 	}
-
-
 
 	public void setDisciplinaProfessor(DisciplinaProfessor disciplinaProfessor) {
 		this.disciplinaProfessor = disciplinaProfessor;

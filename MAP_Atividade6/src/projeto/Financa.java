@@ -29,14 +29,15 @@ public class Financa {
 	}
 	public boolean pago(int processo) {
 		Iterator<Pagamento> it = pagamentos.iterator();
-
+		boolean status=false;
 		while (it.hasNext()) {
 			Pagamento comparador = it.next();
 			if(comparador.getNumero_processo()==processo) {
+				status= true;
 				comparador.setSaldado(true);
 			}
 		}
-		return true;
+		return status;
 	}
 	public boolean addConta(int numero_processo,int preco, boolean pago) {
 		int quantindade = pagamentos.size();

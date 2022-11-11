@@ -27,8 +27,13 @@ public class SistemaAluno {
 		this.disciplinaAluno = disciplinaAluno;
 	}
 	
-	public void addRegistro(Registro registro) {
+	public boolean addRegistro(Registro registro) {
+		int quantidade = disciplinaAluno.size();
 		disciplinaAluno.add(registro);
+		if(quantidade<disciplinaAluno.size()) {
+			return true;
+		}
+		return false;
 	}
 	public void historico() {
 		Iterator<Registro> it = disciplinaAluno.iterator();

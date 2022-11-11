@@ -19,7 +19,6 @@ public class SistemaProfessor {
 		
 	}
 	public String verDisciplinaProfessor(DisciplinaProfessor disciplinaProfessor) {
-		disciplinaProfessor.toString();
 		return disciplinaProfessor.toString();
 	}
 

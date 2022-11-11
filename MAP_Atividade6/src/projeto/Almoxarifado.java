@@ -55,13 +55,14 @@ public class Almoxarifado {
 	}
 
 	public boolean itensComprados(int UPC,String nome, int quantidade) {
-		
+		boolean status=false;
 		for(int i=0;i<quantidade;i++) {
+			status=true;
 			itens.add(new Item(UPC,nome));
 			atualizarListaPendente(UPC);
 		}
 			
-		return false;
+		return status;
 	}
 	
 	private void atualizarListaPendente(int UPC) {
