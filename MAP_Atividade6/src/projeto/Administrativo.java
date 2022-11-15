@@ -9,33 +9,32 @@ public class Administrativo {
 		this.agenda = new ArrayList<Agenda>();
 	}
 
-	public boolean AgendarCompromisso(String data, String hora, String observacao) {
+	public String AgendarCompromisso(String data, String hora, String observacao) throws AddException {
 		int quantindade = agenda.size();
 		agenda.add(new Agenda(data, hora, observacao));
-	
 		if(quantindade<agenda.size()) {
-			return true; 
+			return "Ação realizado com sucesso!";
 		}
-		else return false;
+		throw new AddException();
 	}
-	public boolean concluirCompromisso(String data, String hora) {
+	public String concluirCompromisso(String data, String hora) throws NotFoundException {
 		for(int i=0;i<agenda.size();i++) {
 			if(agenda.get(i).getData()==data && agenda.get(i).getHora()==hora) {
 				agenda.remove(i);
-				return true;
+				return "Ação realizado com sucesso!";
 			}
 		}
-		return false;
+		throw new NotFoundException();
 	}
 
-	public boolean compromissoAgendado() {
+	public int compromissoAgendado() {
+		int quantidade = 0;
 		Iterator<Agenda> it = agenda.iterator();
-		boolean status = false;
 		while (it.hasNext()) {
 			Agenda comparador = it.next();
 			System.out.println(comparador.toString());
-			status=true;
+			quantidade++;
 		}
-		return status;
+		return quantidade;
 	}
 }

@@ -29,7 +29,7 @@ public class DisciplinaProfessor {
 	
 	@Override
 	public String toString() {
-		return "ListaDisciplinaProfessor [professores: " + professor.getNome() + ", disciplina: " + disciplina + "]";
+		return "ListaDisciplinaProfessor [professores: " + professor.getNome() + ", disciplina: " + disciplina.getNome() + "]";
 	}
 
 		

@@ -22,13 +22,11 @@ public class SistemaProfessorTeste {
 		
 	}
 	
-	@Test
-	public void verDisciplinaProfessor() {
-		assertNotNull(sistemaProfessor.verDisciplinaProfessor(port));
-	}
+	
 	@Test
 	public void alocarProfessorr() {
-		assertTrue(sistemaProfessor.alocarProfessor(jose, port));
+		sistemaProfessor.alocarProfessor(jose, port);
+		assertEquals(sistemaProfessor.verDisciplinaProfessor(port),"ListaDisciplinaProfessor [professores: José, disciplina: portugues]");
 	}
 
 }

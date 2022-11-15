@@ -9,26 +9,26 @@ public class AdministrativoTeste {
 	private Administrativo administrativo;
 	
 	@Before
-	public void setUp() {
+	public void setUp() throws AddException {
 		administrativo = new Administrativo();
 		administrativo.AgendarCompromisso("01/12/2020", "12:00", "Entrevista");
 	}
 
 	
 	@Test
-	public void AgendarCompromisso() {
-		assertTrue(administrativo.AgendarCompromisso("02/12/2020", "12:00", "Entrevista"));
+	public void AgendarCompromisso() throws AddException {
+		assertEquals(administrativo.AgendarCompromisso("02/12/2020", "12:00", "Entrevista"),"Ação realizado com sucesso!");
 	}
 
 	
 	@Test
 	public void compromissoAgendado() {
-		assertTrue(administrativo.compromissoAgendado());
+		assertEquals(administrativo.compromissoAgendado(),1);
 		
 	}
 	@Test
-	public void concluirCompromisso() {
-		assertTrue(administrativo.concluirCompromisso("01/12/2020", "12:00"));
+	public void concluirCompromisso() throws NotFoundException {
+		assertEquals(administrativo.concluirCompromisso("01/12/2020", "12:00"),"Ação realizado com sucesso!");
 		
 	}
 }

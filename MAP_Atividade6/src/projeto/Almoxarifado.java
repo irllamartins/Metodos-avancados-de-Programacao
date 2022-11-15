@@ -27,47 +27,52 @@ public class Almoxarifado {
 		this.pedidoCompra = pedidoCompra;
 	}
 
-	public boolean estoque() {
+	public int estoque() {
 		Iterator<Item> it = itens.iterator();
 		while (it.hasNext()) {
 			Item comparador = it.next();
 			System.out.println(comparador.toString());
 		}
-		return true;
+		return itens.size();
 	}
-	public boolean listaPendente() {
+	public int listaPendente() {
 		Iterator<Item> it = pedidoCompra.iterator();
 		while (it.hasNext()) {
 			Item comparador = it.next();
 			System.out.println(comparador.toString());
 		}
-		return true;
+		return pedidoCompra.size();
 	}
-	public boolean pedidoCompra(int UPC,String nome, int quantidade) {
+	public String pedidoCompra(int UPC,String nome, int quantidade) throws QtdException {
 		if(quantidade>0) {
 			for(int i=0;i<quantidade;i++) {
 				pedidoCompra.add(new Item(UPC,nome));
 			}
-			return true;
+			return "Ação realizado com sucesso!";
 		}
-		
-		return false;
+		else
+			throw new QtdException();
 	}
 
-	public boolean itensComprados(int UPC,String nome, int quantidade) {
-		boolean status=false;
-		for(int i=0;i<quantidade;i++) {
-			status=true;
-			itens.add(new Item(UPC,nome));
-			atualizarListaPendente(UPC);
+	public String itensComprados(int UPC,String nome, int quantidade) throws QtdException {
+		
+		if(quantidade>0) {
+			for(int i=0;i<quantidade;i++) {
+				itens.add(new Item(UPC,nome));
+				atualizarListaPendente(UPC);
+			}
+				
+			return "Ação realizado com sucesso!";
 		}
-			
-		return status;
+		else
+			throw new QtdException();
+		
 	}
 	
 	private void atualizarListaPendente(int UPC) {
 		
 		for(int i=0;i<pedidoCompra.size();i++) {
+			
 			if(pedidoCompra.get(i).getUPC()==UPC) {
 				pedidoCompra.remove(i);
 				i=pedidoCompra.size();

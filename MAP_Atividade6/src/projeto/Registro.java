@@ -38,7 +38,7 @@ public class Registro {
 
 	@Override
 	public String toString() {
-		return "Registro [disciplinas: " + disciplinaProfessor.getDisciplina() +", ano: " + ano + ", nota: " + nota +", Professor: " + disciplinaProfessor.getDisciplina() + "]";
+		return "Registro [disciplinas: " + disciplinaProfessor.getDisciplina() +", ano: " + ano + ", nota: " + nota +", Professor: " + disciplinaProfessor.getProfessor().getNome() + "]";
 	}
 	
 	

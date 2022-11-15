@@ -16,42 +16,57 @@ public class Infraestrutura {
 		this.salas = salas;
 	}
 
-	public boolean ocuparSalas(int numero) {
+	public String ocuparSalas(int numero) throws ImpossibleException, NotFoundException {
 		Iterator<Sala> it = salas.iterator();
 		while (it.hasNext()) {
 			Sala comparador = it.next();
 			if(numero==comparador.getNumero()) {
-				
-				comparador.setDisponivel(false);
-				return true;
+				if(true==comparador.getDisponivel()) {
+					comparador.setDisponivel(false);
+					return "Ação realizado com sucesso!";
+				}
+				throw new ImpossibleException();
+
 			}
 		}
-		return false;
+		throw new NotFoundException();
 	}
-	public boolean liberarSalas(int numero) {
+	public String liberarSalas(int numero) throws ImpossibleException, NotFoundException {
 		Iterator<Sala> it = salas.iterator();
 		while (it.hasNext()) {
 			Sala comparador = it.next();
 			if(numero==comparador.getNumero()) {
-				comparador.setDisponivel(true);
-				return true;
+				if(false==comparador.getDisponivel()) {
+					comparador.setDisponivel(true);
+					return "Ação realizado com sucesso!";
+				}
+				throw new ImpossibleException();
+
 			}
 		}
-		return false;
+		throw new NotFoundException();
 	}
-	public boolean salasDisponiveis() {
+	public int salasDisponiveis() {
+		int quantidade = 0;
 		Iterator<Sala> it = salas.iterator();
 		while (it.hasNext()) {
 			Sala comparador = it.next();
 			if(comparador.getDisponivel()==true) {
 				System.out.println(comparador.toString());
-				return true;
+				quantidade++;
 			}
 		}
-		return false;	}
-	public  boolean addSala(int numero, int capacidade,boolean disponivel) {
+		return quantidade;	
+	}
+	
+	public String addSala(int numero, int capacidade,boolean disponivel) throws AddException {
+		int quantidade = salas.size();
 		salas.add(new Sala(numero, capacidade,disponivel));
-		return true;
+		if(quantidade<salas.size()) {
+			return "Ação realizado com sucesso!";
+		}
+		else
+			throw new AddException();
 		
 	}
 }

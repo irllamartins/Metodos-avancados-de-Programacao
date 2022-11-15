@@ -6,77 +6,143 @@ public class Main {
 		
 		ControleGeral sistema = new ControleGeral();
 		
-		//dados de teste
-		Professor jose = new Professor(12345,"José");
-		Professor ana = new Professor(67345,"Ana");
-		Professor jessica = new Professor(45345,"Jessica");
 		
-		Aluno caio = new Aluno(31234,"Caio");
+		System.out.println("\n-------------------------------------------------------");
+		System.out.println("Administrativas (reuniões agendadas com a diretoria, entrevistas)\n");
 		
-		Disciplina matematica = new Disciplina(1,"matematica",true);
-		Disciplina portugues = new Disciplina(2,"portugues",true);
-		Disciplina historia = new Disciplina(3,"historia",false);
+		try {
+			System.out.println("Add compromisso");
+			System.out.println(sistema.addCompromisso());
+			System.out.println();
+		}
+		catch (AddException e) {
+		}
 		
-		DisciplinaProfessor port = new DisciplinaProfessor(ana, portugues);
-		DisciplinaProfessor hist = new DisciplinaProfessor(ana, historia);
-		DisciplinaProfessor mat = new DisciplinaProfessor(jose, matematica);
+		try {
+			System.out.println("Concluir compromisso");
+			System.out.println(sistema.concluirCompromisso());
+			System.out.println();
+			
+		}
+		catch (NotFoundException e4) {
+		}
+		System.out.println("Visualizar compromisso");
+		System.out.println(sistema.verCompromisso());
 		
-		Registro matematica1= new Registro (mat, 2020);
-		Registro portugues1= new Registro (port, 2020);
-		Registro historia1= new Registro (hist, 2020);
+		System.out.println("\n-------------------------------------------------------");
+		System.out.println("À infra-estrutura (alocação de salas).\n");
 		
-		System.out.println("\nAdministrativas (reuniões agendadas com a diretoria, entrevistas)\n");
-		sistema.getAdministrativo().AgendarCompromisso("02/12/2020", "12:00", "Entrevista");
-		sistema.getAdministrativo().AgendarCompromisso("20/06/2021", "14:00", "Reuniao");
-		sistema.getAdministrativo().AgendarCompromisso("20/06/2021", "15:00", "Reuniao");
-		sistema.getAdministrativo().AgendarCompromisso("20/06/2021", "16:00", "Reuniao");
-		sistema.getAdministrativo().concluirCompromisso("20/06/2021","14:00");
+		try {
+			System.out.println("Adicionar sala");
+			System.out.println(sistema.addSala());
+			System.out.println();
+		} catch (AddException e3) {
+			
+		}
 		
-		sistema.getAdministrativo().compromissoAgendado();
+		try {
+			System.out.println("Liberar sala");
+			System.out.println(sistema.liberarSala());
+			System.out.println();
+		}
+		catch (NotFoundException e2) {
+			
+		}
+		catch (ImpossibleException e2) {
+		}
 		
-		System.out.println("\nÀ infra-estrutura (alocação de salas).\n");
-		sistema.getInfraestrutura().addSala(001, 20, true);
-		sistema.getInfraestrutura().addSala(002, 20, true);
-		sistema.getInfraestrutura().addSala(003, 20, false);
-		sistema.getInfraestrutura().addSala(100, 50, true);
-		sistema.getInfraestrutura().addSala(101, 50, false);
-		sistema.getInfraestrutura().liberarSalas(101);
-		sistema.getInfraestrutura().salasDisponiveis();
+		try {
+			System.out.println("Ocupar sala");
+			System.out.println(sistema.ocuparSala());
+			System.out.println();
+		} 
+		catch (NotFoundException e1) {
+		} 
+		catch (ImpossibleException e1) {
+		}
 		
-		System.out.println("\nAo almoxarifado (estoque, pedido de compra)\n");
-		sistema.getAlmoxarifado().pedidoCompra(12345, "Mesa",3);
-		sistema.getAlmoxarifado().pedidoCompra(22345, "Cadeira",8);
-		sistema.getAlmoxarifado().listaPendente();
-		sistema.getAlmoxarifado().itensComprados(12345, "Mesa",5);
-		
+		try {
+			System.out.println("Lista de salas");
+			System.out.println(sistema.salaDisponivel());
+		}
+		catch (NotFoundException e1) {
+		}
+		System.out.println("\n-------------------------------------------------------");
+		System.out.println("Ao almoxarifado (estoque, pedido de compra)\n");
+		System.out.println("Adicionar pedidos para compra");
+		try {
+			System.out.println(sistema.addPedidoCompra());
+			System.out.println();
+		}
+		catch (QtdException e) {
+		}
+		System.out.println("Lista de pedidos pendente");
+		System.out.println(sistema.listaPendente());
 		System.out.println();
-		sistema.getAlmoxarifado().listaPendente();
+		
+		try {
+			System.out.println("Compras realizas");
+			System.out.println(sistema.compras());
+			System.out.println();
+		} catch (QtdException e) {
+		}
+		System.out.println("Exemplo");
 		System.out.println();
-		sistema.getAlmoxarifado().estoque();
+		System.out.println(sistema.listaPendente());
+		System.out.println();
+		System.out.println(sistema.estoque());
 		
-		System.out.println("\nFinanceiras ( folha de pagamento)\n");
-		sistema.getFinanca().addConta(1, 10000, true);
-		sistema.getFinanca().addConta(2, 50000, false);
-		sistema.getFinanca().addConta(3, 150000, false);
-		sistema.getFinanca().pago(2);
+		System.out.println("\n-------------------------------------------------------");
+		System.out.println("Financeiras ( folha de pagamento)\n");
 		
-		sistema.getFinanca().emPendencia();
+		try {
+			System.out.println(sistema.addConta());
+			System.out.println();
+		}
+		catch (AddException | QtdException e) {
+		}
+		try {
+			System.out.println("valor do saldo atual: "+sistema.addRemanecente());
+			System.out.println();
+		}
+		catch (NegativeException e) {
+			
+		}
+		System.out.println("Contas pendentes");
+			System.out.println(sistema.contaPendente());
+			System.out.println();
 		
-		System.out.println("\nRelacionada aos alunos (histórico e RDM)\n");
-		sistema.getSistemaAluno(caio).setAluno(caio);
-		sistema.getSistemaAluno(caio).addRegistro(matematica1);
-		sistema.getSistemaAluno(caio).addRegistro(portugues1);
-		sistema.getSistemaAluno(caio).addRegistro(historia1);
-		sistema.getSistemaAluno(caio).getDisciplinaAluno().get(2).setNota(9);
+		try {
+			System.out.println("Pagar conta(s)");
+			System.out.println(sistema.quitarConta());
+			System.out.println();
+		} catch (NotFoundException | ImpossibleException | NegativeException e1) {
+			
+		}
+		System.out.println("Contas pagas");
+		System.out.println(sistema.contaQuitada());
+		System.out.println();
+		
+		System.out.println("Lista de todas contas");
+		System.out.println(sistema.folhaPagamento());
+		System.out.println();
+		
+		System.out.println("Resumo");
+		System.out.println(sistema.balancoFinanceiro());
+		System.out.println();
+		
+		System.out.println("\n-------------------------------------------------------");
+		System.out.println("Relacionada aos alunos (histórico e RDM)\n");
+		
 		System.out.println("RDM");
-		sistema.getSistemaAluno(caio).rdm();
+		System.out.println("Contem "+sistema.RDM()+" disciplina(s) cadastradas");
 		System.out.println("\nHistorico");
-		sistema.getSistemaAluno(caio).historico();
+		System.out.println("Contem "+sistema.historico()+" disciplina(s) cadastradas");
 		
-		System.out.println("\nRelacionadas ao professores (alocação por disciplina)\n");
-		sistema.getSistemaProfessor();
-		sistema.getSistemaProfessor().alocarProfessor(jessica,port);
-		System.out.println(sistema.getSistemaProfessor().verDisciplinaProfessor(port));
+		System.out.println("\n-------------------------------------------------------");
+		System.out.println("Relacionadas ao professores (alocação por disciplina)\n");
+		
+		System.out.println(sistema.alocaProfessor());
 		
 		
 	}

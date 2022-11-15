@@ -35,23 +35,34 @@ public class SistemaAluno {
 		}
 		return false;
 	}
-	public void historico() {
+	
+	public int historico() {
 		Iterator<Registro> it = disciplinaAluno.iterator();
+		int cont=0;
+		
 		while (it.hasNext()) {
 			Registro comparador = it.next();
 			if(comparador.getDisciplinaProfessor().getDisciplina().getAtivo()==false) {
 				System.out.println(comparador.toString());
+				cont++;
 			}
-		}	
+		}
+		
+		return cont;
 	}
-	public void rdm() {
+	
+	public int rdm() {
 		Iterator<Registro> it = disciplinaAluno.iterator();
+		int cont=0;
+		
 		while (it.hasNext()) {
 			Registro comparador = it.next();
 			if(comparador.getDisciplinaProfessor().getDisciplina().getAtivo()==true) {
 				System.out.println(comparador.toString());
+				cont++;
 			}
-		}	
+		}
+		return cont;
 	}
 
 }

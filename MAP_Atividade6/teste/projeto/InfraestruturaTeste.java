@@ -1,7 +1,7 @@
 package projeto;
 
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -9,26 +9,26 @@ import org.junit.Test;
 public class InfraestruturaTeste {
 	Infraestrutura  infraestrutura;
 	@Before
-	public  void setUp() {
+	public  void setUp() throws AddException {
 		 infraestrutura = new Infraestrutura();
 		 infraestrutura.addSala(003, 20, false);
 		 infraestrutura.addSala(100, 50, true);
 		 infraestrutura.addSala(101, 50, false);
 	}
 	@Test
-	public void ocuparSalas() {
-		assertTrue(infraestrutura.ocuparSalas(100));
+	public void ocuparSalas() throws ImpossibleException, NotFoundException {
+		assertEquals(infraestrutura.ocuparSalas(100),"Ação realizado com sucesso!");
 	}
 	@Test
-	public void liberarSalas()  {
-		assertTrue(infraestrutura.liberarSalas(003));
+	public void liberarSalas() throws ImpossibleException, NotFoundException  {
+		assertEquals(infraestrutura.liberarSalas(003),"Ação realizado com sucesso!");
 	}
 	@Test
 	public void salasDisponiveis() {
-		assertTrue(infraestrutura.salasDisponiveis());
+		assertEquals(infraestrutura.salasDisponiveis(),1);
 	}
 	@Test
-	public void addSala() {
-		assertTrue(infraestrutura.addSala(001, 20, false));
+	public void addSala() throws AddException {
+		assertEquals(infraestrutura.addSala(001, 20, false),"Ação realizado com sucesso!");
 	}
 }
