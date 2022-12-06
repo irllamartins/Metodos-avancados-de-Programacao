@@ -6,64 +6,75 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class ExcecoesTeste {
-	private FigurasGeometricas fig;
+	 VisitorIF visitorA;
+	 VisitorIF visitorP;
+	 Triangulo triangulo;
+	 Retangulo retangulo;
+	 Circulo circulo;
+	 Trapezio trapezio;
+	 Quadrado quadrado;
+	 @Before
+		public void setUp() throws RetanguloException  {
+		 visitorA = new VisitorCalculaArea();
+		 visitorP = new VisitorCalculaPerimetro();
+			
+		 
+			triangulo = new Triangulo(8,15,0);
+			retangulo = new Retangulo(15,-1);
+			circulo = new Circulo(0);
+			quadrado = new Quadrado(0);
+			trapezio = new Trapezio(5,0,8,10,10);
+				
+			
+		}
 
-	@Before
-	public void setUp() {
-		fig = new FigurasGeometricas();
-
-		fig.setCirculo(0);
-		fig.setQuadrado(0);
-		fig.setRetangulo(10, 0);
-		fig.setTriangulo(0, 5, 6);
-	}
 
 	// teste exceções para Retangulo
 
 	@Test(expected = RetanguloException.class)
 	public void retanguloPerimetro() throws RetanguloException {
-		assertEquals(fig.getRetangulo().perimetro(), 42, 0.01);
+		assertEquals(retangulo.aceitaVisita(visitorP), "50");
 	}
 
 	@Test(expected = RetanguloException.class)
 	public void retanguloArea() throws RetanguloException {
-		assertEquals(fig.getRetangulo().area(), 110, 0.01);
+		assertEquals(retangulo.aceitaVisita(visitorA), "-15");
 	}
 
 	// teste exceções para Quadrado
 	@Test(expected = QuadradoException.class)
 	public void quadradoPerimetro() throws QuadradoException {
-		assertEquals(fig.getQuadrado().perimetro(), 40, 0.01);
+		assertEquals(quadrado.aceitaVisita(visitorP), "40");
 	}
 
 	// teste saida area do quadrado
 	@Test(expected = QuadradoException.class)
 	public void quadradoArea() throws QuadradoException {
-		assertEquals(fig.getQuadrado().area(), 100.0, 0.01);
+		assertEquals(quadrado.aceitaVisita(visitorA), "100.0");
 	}
 
 	// teste exceções o perimetro de circulo
 
 	@Test(expected = TrianguloException.class)
 	public void trianguloPerimetro() throws TrianguloException {
-		assertEquals(fig.getTriangulo().perimetro(), 24, 0.01);
+		assertEquals(triangulo.aceitaVisita(visitorP)," 24");
 	}
 
 	// teste saida a area do circulo
 	@Test(expected = TrianguloException.class)
-	public void trianguloArea() throws TrianguloException {
-		assertEquals(fig.getTriangulo().area(), 24, 0.01);
+	public void trianguloArea() throws  TrianguloException {
+		assertEquals(triangulo.aceitaVisita(visitorA), "24");
 	}
 	// teste exceções para circulo
 
 	@Test(expected = CirculoException.class)
 	public void circuloPerimetro() throws CirculoException {
-		assertEquals(fig.getCirculo().perimetro(), 24, 0.01);
+		assertEquals(circulo.aceitaVisita(visitorP)," 24");
 	}
 
 	// teste saida area de circulo
 	@Test(expected = CirculoException.class)
 	public void circuloArea() throws CirculoException {
-		assertEquals(fig.getCirculo().area(), 24, 0.01);
+		assertEquals(circulo.aceitaVisita(visitorA), "24");
 	}
 }

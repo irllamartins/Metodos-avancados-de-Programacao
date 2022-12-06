@@ -2,7 +2,7 @@ package projeto;
 
 public interface ElementoConcretoIF {
 
-	public void aceitaVisita(VisitorIF v);
+	public String aceitaVisita(VisitorIF v) throws TrianguloException, CirculoException, RetanguloException, QuadradoException;
 	
 
 }

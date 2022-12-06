@@ -26,21 +26,9 @@ public class Retangulo implements ElementoConcretoIF{
 	}
 
 	@Override
-	public void aceitaVisita(VisitorIF v) {
-		v.visitaRetangulo(this);
+	public String aceitaVisita(VisitorIF v) throws RetanguloException {
+		return v.visitaRetangulo(this);
 		
 	}
-
-	
-	
-	/*@Override
-	public String toString() {
-		try {
-			return "Retangulo [altura: " + altura + ", largura: " + largura +", Perimetro: "+ perimetro() +", Area: "+ area()+ "]";
-		} catch ( RetanguloException e) {
-			return "Ocorreu um erro no calculo da area ou perimentro!";
-		}
-	}*/
-
 	
 }

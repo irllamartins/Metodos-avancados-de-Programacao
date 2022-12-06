@@ -12,19 +12,8 @@ public class Circulo implements ElementoConcretoIF{
 	public void setRaio(double raio) {
 		this.raio = raio;
 	}
-	public void aceitaVisita(VisitorIF v) {
-		 v.visitaCirculo(this);
+	public String aceitaVisita(VisitorIF v) throws CirculoException {
+		return v.visitaCirculo(this);
 	}
-	
-	/*@Override
-	public String toString() {
-		try {
-			return "Circulo [raio: " + raio +"]";
-		} catch (CirculoException e) {
-			return  "Ocorreu um erro no calculo da area ou perimentro!";
-		}
-	
-	}*/
-	
 
 }

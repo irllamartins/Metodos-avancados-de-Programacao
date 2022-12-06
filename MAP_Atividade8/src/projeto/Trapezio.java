@@ -65,7 +65,7 @@ public class Trapezio {
 	}
 
 
-	public void aceitaVisita(VisitorIF v) {
-		 v.visitaTrapezio(this);
+	public String aceitaVisita(VisitorIF v) throws TrapezioException {
+		return v.visitaTrapezio(this);
 	}
 }

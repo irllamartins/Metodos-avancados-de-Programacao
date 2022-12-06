@@ -16,19 +16,8 @@ public class Quadrado implements ElementoConcretoIF{
 	}
 	
 	
-	public void aceitaVisita(VisitorIF v) {
-		 v.visitaQuadrado(this);
+	public String aceitaVisita(VisitorIF v) throws QuadradoException {
+		return v.visitaQuadrado(this);
 	}
-	
-	
-	/*@Override
-	public String toString() {
-		try {
-			return "Quadrado [lado: " + lado +", Perimetro: "+ perimetro() +", Area: "+ area()+"]";
-		} catch (QuadradoException e) {
-			return  "Ocorreu um erro no calculo da area ou perimentro!";
-		}
-	}*/
-
 	
 }

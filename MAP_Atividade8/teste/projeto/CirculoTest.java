@@ -5,28 +5,45 @@ import org.junit.Before;
 import org.junit.Test;
 
  public class CirculoTest {	
-	 private FigurasGeometricas fig;
+	 VisitorIF visitorA;
+	 VisitorIF visitorP;
+	 VisitorIF visitorD;
+	 VisitorIF visitorM;
+	 Circulo circulo;
 	 @Before
 		public void setUp() {
-		 fig = new FigurasGeometricas();
+		 visitorA = new VisitorCalculaArea();
+		 visitorP = new VisitorCalculaPerimetro();
+		 visitorD = new VisitorCalculaDesenha();
+		 visitorM = new VisitorCalculaMaximiza();
+			
 		 
-		 fig.setCirculo(10);
-		 fig.setQuadrado(10);
-		 fig.setRetangulo(10,11);
-		 fig.setTriangulo(8,10,6);
+		 circulo = new Circulo(10);
 		}
 	
-	//teste saida o perimetro de circulo
+	//teste saida o perimetro
 	@Test 
 	public void Perimetro() throws CirculoException {
-		assertEquals(fig.getCirculo().perimetro(),62.8 ,0.01);
+		assertEquals(circulo.aceitaVisita(visitorP),"62.800000000000004");
 	}
 	
 	
-	//teste saida o perimetro de circulo
+	//teste saida area
 	@Test 
 	public void Area() throws CirculoException {
-		assertEquals(fig.getCirculo().area(),314,0.01);
+		assertEquals(circulo.aceitaVisita(visitorA),"314.0");
+	}
+	//teste saida de desenha
+	@Test 
+	public void Desenha() throws CirculoException {
+		assertEquals(circulo.aceitaVisita(visitorD),"desenha circulo");
+	}
+		
+
+		//teste saida mazimiza
+	@Test 
+	public void Maximiza() throws CirculoException {
+		assertEquals(circulo.aceitaVisita(visitorM),"Figura maximizada!");
 	}
 
 }

@@ -4,30 +4,47 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
- public class  RetanguloTest {	
-	 private FigurasGeometricas fig;
-	 
-	 @Before
-	 public void setUp() {
-		 fig = new FigurasGeometricas();
-		 
-		 fig.setCirculo(10);
-		 fig.setQuadrado(10);
-		 fig.setRetangulo(10,11);
-		 fig.setTriangulo(8,10,6);
-		}
-	
-	//teste saida o perimetro de retangulo
-	@Test 
-	public void Perimetro() throws RetanguloException{
-		assertEquals(fig.getRetangulo().perimetro(),42 ,0.01);
+public class RetanguloTest {
+	VisitorIF visitorA;
+	VisitorIF visitorP;
+	VisitorIF visitorM;
+	VisitorIF visitorD;
+	Retangulo retangulo;
+
+	@Before
+	public void setUp() throws RetanguloException {
+		 visitorA = new VisitorCalculaArea();
+		 visitorP = new VisitorCalculaPerimetro();
+		 visitorD = new VisitorCalculaDesenha();
+		 visitorM = new VisitorCalculaMaximiza();
+
+		retangulo = new Retangulo(15, 10);
+		
 	}
-	
-	//teste saida o perimetro de retangulo
-	@Test 
-	public void retanguloArea() throws RetanguloException {
-		assertEquals(fig.getRetangulo().area(), 110,0.01);
+
+	//teste saida o perimetro
+		@Test 
+	public void Perimetro() throws RetanguloException {
+		assertEquals(retangulo.aceitaVisita(visitorP),"50");
 	}
-	
-	
+			
+			
+	//teste saida area
+	@Test 
+	public void Area() throws RetanguloException {
+		assertEquals(retangulo.aceitaVisita(visitorA),"150");
+	}
+	//teste saida de desenha
+	@Test 
+	public void Desenha() throws RetanguloException {
+		assertEquals(retangulo.aceitaVisita(visitorD),"desenha retangulo");
+	}
+				
+
+	//teste saida mazimiza
+	@Test 
+	public void Maximiza() throws RetanguloException {
+		assertEquals(retangulo.aceitaVisita(visitorM),"Figura maximizada!");
+	}
+
 }

@@ -5,30 +5,46 @@ import org.junit.Test;
 
  public class  QuadradoTest {	
 	 
-	 private FigurasGeometricas fig;
-	 
+	 VisitorIF visitorA;
+	 VisitorIF visitorP;
+	 VisitorIF visitorM;
+	 VisitorIF visitorD;
+
+	 Quadrado quadrado;
 	 @Before
-	 public void setUp() {
-		 fig = new FigurasGeometricas();
+		public void setUp() {
 		 
-		 fig.setCirculo(10);
-		 fig.setQuadrado(10);
-		 fig.setRetangulo(10,11);
-		 fig.setTriangulo(8,10,6);
+		 visitorA = new VisitorCalculaArea();
+		 visitorP = new VisitorCalculaPerimetro();
+		 visitorD = new VisitorCalculaDesenha();
+		 visitorM = new VisitorCalculaMaximiza();
+		 
+		 quadrado = new Quadrado(10);
+			
 		}
 	
-	//teste saida o perimetro do quadrado
-	@Test 
-	public void Perimetro() throws QuadradoException{
-		assertEquals( fig.getQuadrado().perimetro(),40,0.01);
-	}
-	
-	
-	//teste saida area do quadrado
-	@Test 
-	public void Area() throws QuadradoException {
-		assertEquals(fig.getQuadrado().area(),100.0,0.01);
-	}
+	//teste saida o perimetro
+		@Test 
+		public void Perimetro() throws QuadradoException {
+			assertEquals(quadrado.aceitaVisita(visitorP),"40");
+		}
+		
+		
+		//teste saida area
+		@Test 
+		public void Area() throws QuadradoException {
+			assertEquals(quadrado.aceitaVisita(visitorA),"100");
+		}
+		//teste saida de desenha
+		@Test 
+		public void Desenha() throws QuadradoException {
+			assertEquals(quadrado.aceitaVisita(visitorD),"desenha quadrado");
+		}
+			
 
-
+			//teste saida mazimiza
+		@Test 
+		public void Maximiza() throws QuadradoException {
+			assertEquals(quadrado.aceitaVisita(visitorM),"Figura maximizada!");
+		}
 }

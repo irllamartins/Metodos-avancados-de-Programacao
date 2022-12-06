@@ -1,9 +1,9 @@
 package projeto;
 
 public interface VisitorIF {
-	public double visitaQuadrado(Quadrado q);
-	public double visitaCirculo(Circulo c);
-	public double visitaRetangulo(Retangulo r);
-	public double visitaTriangulo(Triangulo t) ;
-	public double visitaTrapezio(Trapezio tr);
+	public String visitaQuadrado(Quadrado q) throws QuadradoException;
+	public String visitaCirculo(Circulo c) throws CirculoException;
+	public String visitaRetangulo(Retangulo r) throws RetanguloException;
+	public String visitaTriangulo(Triangulo t) throws TrianguloException ;
+	public String visitaTrapezio(Trapezio tr) throws TrapezioException;
 }

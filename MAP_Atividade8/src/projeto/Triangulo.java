@@ -37,23 +37,9 @@ public class Triangulo implements ElementoConcretoIF{
 	}
 
 
-	public void aceitaVisita(VisitorIF v) {
-		v.visitaTriangulo(this);
+	public String aceitaVisita(VisitorIF v) throws TrianguloException {
+		return v.visitaTriangulo(this);
 		
 	}
-
-
-	/*@Override
-	public String toString(){
-		try {
-			return "Triangulo [lado1: " + lado1 + ", lado2: " + lado2 + ", lado3: " + lado3+", Perimetro: "+ perimetro() +", Area: "+ area()+ "]";
-		} catch (TrianguloException e) {
-			return  "Ocorreu um erro no calculo da area ou perimentro!";
-		}
-	}
-*/
-	
-	
-	
 
 }
